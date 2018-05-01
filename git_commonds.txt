@@ -1,0 +1,58 @@
+1.GIT bash
+
+2.配置某台机器的全局环境，该机器上所有git repo都会使用这个配置。
+	git config --global user.name "your name"
+	git config --global user.email "emai.@example.com"
+
+3.创建本地版本库，首先在想要创建该版本库的目录位置下打开GIT bash.
+	mkdir learngit  #创建git仓库对应文件夹
+	cd learngit 	#切换到该目录
+	git init		#初始化git仓库，会生成.git文件夹，git仓库创建成功。
+
+4.git add readme.txt	emptyfile.txt		#添加到缓存区
+  git commit -m "change information" 		#提交到仓库
+  git status								#查看当前状态
+  git diff readme.txt 						#查看文件中修改的地方
+
+5.版本回退，撤销修改
+	git log		#查看由近到远的提交日志
+	git log --pretty=oneline	#每次提交日志独行显示
+	git reflog		#查看历史命令
+	文件被修改但未add，即丢弃工作区中修改。
+		git checkout -- readme.txt
+	文件被修改并且已经add，但未commit。即丢弃暂存区的修改，重新放回工作区。
+		git reset HEAD readme.txt
+		git checkout -- readme.txt
+	文件被修改被add且被commit，因此可以通回退到上一个版本来恢复
+		git reset --hard HEAD^
+	删除文件
+		rm test.txt		#工作区删除，版本库中还保留 git checkout -- test.txt 可恢复
+		git rm test.txt
+		git commit -m "delete test.txt"		#版本库中删除
+
+6.远程管理（github）
+	创建SSH-Key: ssh-keygen -t rsa -C "youremail@example.com"
+	将id_rsa_pub添加到github账户SSH Key，这样github账户就可以通过公钥验证通过本电脑的提交。
+	本地库与远程库同步：
+		在GitHub创建同名库gitskills
+		将本地库与远程库关联：
+			git remote add origin git@github.com:lyk109/gitskills.git
+		将本地库推送到远程库：
+			git push -u origin master #第一次需要-u后面可不加
+	远程库克隆到本地
+		在GitHub创建库gitskills
+		将该库克隆到本地：
+			git clone git@github.com:lyk109/gitskills.git
+
+7.分支管理
+	创建并切换分支：git checkout -b dev. 等同于：
+		git branch dev
+		git checkout dev
+	查看有哪些分支以及当前工作分支：git branch
+	合并dev到master分支：
+		git checkout master #首先切换到master分支
+		git merge dev  #默认--ff，可选--no-ff
+	合并后删除不用分支：git branch -d dev
+	
+		
+		
