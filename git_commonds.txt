@@ -33,6 +33,7 @@
 6.远程管理（github）
 	创建SSH-Key: ssh-keygen -t rsa -C "youremail@example.com"
 	将id_rsa_pub添加到github账户SSH Key，这样github账户就可以通过公钥验证通过本电脑的提交。
+	查看远程库信息：git remote -v
 	本地库与远程库同步：
 		在GitHub创建同名库gitskills
 		将本地库与远程库关联：
@@ -42,8 +43,12 @@
 	远程库克隆到本地
 		在GitHub创建库gitskills
 		将该库克隆到本地：
-			git clone git@github.com:lyk109/gitskills.git
-
+			git clone git@github.com:lyk109/gitskills.git  #默认情况只能看到master分支
+			git checkout -b dev master/dev   #创建本地dev分支
+			git push origin dev				 #将dev分支推送到远程
+			git pull origin dev				 #将远程分支与本地分支合并
+			git branch --set-upstream dev origin/dev 	#设置dev与origin/dev链接
+			
 7.分支管理
 	创建并切换分支：git checkout -b dev. 等同于：
 		git branch dev
@@ -53,6 +58,16 @@
 		git checkout master #首先切换到master分支
 		git merge dev  #默认--ff，可选--no-ff
 	合并后删除不用分支：git branch -d dev
+	查看分支合并图：git log --graph --pretty=oneline --abbrev-commit
+
+8.把当前的工作现场暂存
+	git stash
+	查看暂存的工作：git stash list
+	恢复最近暂存的工作并从git stash list中删除：git stash pop
+	恢复最近暂存的工作但不从git stash list中删除：git stash apply
+	从git stash list中删除： git stash drop
+	
+
 	
 		
 		
