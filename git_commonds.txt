@@ -67,6 +67,20 @@
 	恢复最近暂存的工作但不从git stash list中删除：git stash apply
 	从git stash list中删除： git stash drop
 	
+9.标签管理
+	查看所有标签：git tag
+	对当前分支最近一份commit打标签： git tag v1.0
+	对某个commit打标签: git tag v0.9 5db9b07
+	显示标签信息：git show v1.0
+	创建带有说明文件的标签：git tag -a v0.1 -m "description information" 5sb9b07
+	删除标签：git tag -d v0.1
+	推送某个标签到远程： git push origin v1.0
+	一次性推送所有未推送标签到远程： git push origin --tags
+	删除远程标签： 
+		先从本地删除： git tag -d v1.0
+		然后从远程删除：git push :refs/tags/v1.0
+	
+	
 
 	
 		
